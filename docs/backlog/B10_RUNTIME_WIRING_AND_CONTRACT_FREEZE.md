@@ -6,53 +6,56 @@
 
 # B10 Runtime Wiring And Contract Freeze
 
-## Svrha
+## Purpose
 
-Ovaj backlog kanonizuje trenutno vec postojeci runtime cut:
+This backlog canonizes the currently existing runtime cut:
 
 - named app graph
-- channels i shared regions
+- channels and shared regions
 - typed contracts
 - config blob layouts
-- generator i `.mk` wiring
+- generator and `.mk` wiring
 
-Granica backloga je namerno uska:
+The backlog boundary is intentionally narrow:
 
-- cilj je close-out onoga sto je vec realno freeze-ovano
-- cilj nije jos uvoditi nove feature-e, persistence ili transport hardening
+- the goal is to close out what is already actually frozen
+- the goal is not yet to introduce new features, persistence, or transport
+  hardening
 
 ## Status
 
-Ovaj backlog je trenutno **done**.
+This backlog is currently **done**.
 
 ## Reality Check
 
-Danas su sledece stvari vec zakljucene i u runtime smislu konzistentne:
+The following pieces are already settled today and are runtime-consistent:
 
-- `docs/TOPOLOGY.md` i `docs/CHANNEL_REGION_MODEL.md` daju isti named edge set
-- `include/cnc_v2/control_ipc.h`, `runtime_topology.h` i `config.h` vec
-  zakljucavaju payload, channel i config blob identitete
-- `meta.py` vec serijalizuje config blobove koji odgovaraju tim layout-ima
-- `lionsos_cnc_v2.mk` vec wira iste artefakte u stvarne buildable image-e
-- `build/` i `build-rpi3b/` vec pokazuju da prvi runtime cut postoji za oba
-  board target-a
+- `docs/TOPOLOGY.md` and `docs/CHANNEL_REGION_MODEL.md` define the same named
+  edge set
+- `include/cnc_v2/control_ipc.h`, `runtime_topology.h`, and `config.h`
+  already freeze payload, channel, and config-blob identities
+- `meta.py` already serializes config blobs that match those layouts
+- `lionsos_cnc_v2.mk` already wires the same artifacts into real buildable
+  images
+- `build/` and `build-rpi3b/` already show that the first runtime cut exists
+  for both board targets
 
-`README.md` jos uvek zaostaje za tim stanjem, ali to je doc-gap, ne contract
-blokada.
+`README.md` still lags behind that state, but that is a documentation gap, not
+a contract blocker.
 
 ## Definition Of Done
 
-Ovaj backlog je gotov kada su istovremeno tacne sledece stvari:
+This backlog is done when all of the following are true at the same time:
 
-- svaki named edge ima jasno:
-  - jednog producenta
-  - jednog potrosaca
-  - kanal ili notify smer
+- each named edge has a clearly identified:
+  - single producer
+  - single consumer
+  - channel or notify direction
   - shared region
   - typed payload contract
-- config blob layout u `meta.py` i `include/cnc_v2/config.h` su 1:1
-- nijedan app PD ne dobija siri authority nego sto topology tvrdi
-- dve board putanje (`qemu_virt_aarch64`, `rpi3b`) koriste isti kanonski
+- config blob layouts in `meta.py` and `include/cnc_v2/config.h` are 1:1
+- no app protection domain receives broader authority than the topology claims
+- the two board paths (`qemu_virt_aarch64`, `rpi3b`) use the same canonical
   service graph
 
 ## Canonical Artifacts
@@ -70,12 +73,13 @@ Ovaj backlog je gotov kada su istovremeno tacne sledece stvari:
 
 ## Dependencies
 
-- nema prethodnih backlog zavisnosti
-- ovaj backlog je ulazni gate za `B20` i `B30`
+- there are no previous backlog dependencies
+- this backlog is the entry gate for `B20` and `B30`
 
 ## Alignment Note
 
-Sledeca matrica je kanonski close-out `B10` zapisa za prvi runtime cut.
+The following matrix is the canonical `B10` close-out record for the first
+runtime cut.
 
 | Edge | Producer | Consumer | Delivery | Channel | Region | Payload |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -91,20 +95,21 @@ Sledeca matrica je kanonski close-out `B10` zapisa za prvi runtime cut.
 | `mcu_transport -> observability` | `mcu_transport` | `observability` | notify plus shared status | `CNC_V2_CH_XPORT_TO_OBS` | `transport_status` | `cnc_v2_transport_status_t` |
 | `session_store -> observability` | `session_store` | `observability` | notify plus shared status | `CNC_V2_CH_STORE_TO_OBS` | `store_status` | `cnc_v2_store_status_t` |
 
-`observability_report` ostaje producer-owned output region za `observability`,
-ne dodatni cross-PD command ili feedback edge.
+`observability_report` remains a producer-owned output region for
+`observability`, not an additional cross-protection-domain command or feedback
+edge.
 
 ## Work Items
 
 ### B10-001 Inventory canonical edge and region matrix
 
-Zadatak:
+Task:
 
-- zatvoriti jednu matricu `edge -> channel -> region -> payload`
+- close out one `edge -> channel -> region -> payload` matrix
 
 Acceptance:
 
-- implementer vise ne mora da pogadja koji artifact nosi koji payload
+- the implementer no longer has to guess which artifact carries which payload
 
 Status:
 
@@ -112,14 +117,14 @@ Status:
 
 ### B10-002 Freeze config blob layout contract
 
-Zadatak:
+Task:
 
-- potvrditi da `meta.py` `struct.pack` layout-i odgovaraju
-  `include/cnc_v2/config.h` packed struct-ovima
+- confirm that the `meta.py` `struct.pack` layouts match the packed structs in
+  `include/cnc_v2/config.h`
 
 Acceptance:
 
-- config blob ABI je 1:1 reviewable iz koda i generatora
+- the config-blob ABI is 1:1 reviewable from the code and generator
 
 Status:
 
@@ -127,14 +132,15 @@ Status:
 
 ### B10-003 Freeze shared-memory publish/read contract
 
-Zadatak:
+Task:
 
-- potvrditi da generation-based publish/read helper-i ostaju kanonski put za
-  shared region-e
+- confirm that the generation-based publish/read helpers remain the canonical
+  path for shared regions
 
 Acceptance:
 
-- producer/consumer shared-memory semantics nisu prepuscene lokalnom tumacenju
+- producer/consumer shared-memory semantics are not left to local
+  interpretation
 
 Status:
 
@@ -142,14 +148,14 @@ Status:
 
 ### B10-004 Freeze first board set and build graph
 
-Zadatak:
+Task:
 
-- potvrditi da prvi runtime cut ima isti service graph na `qemu_virt_aarch64`
-  i `rpi3b`
+- confirm that the first runtime cut has the same service graph on
+  `qemu_virt_aarch64` and `rpi3b`
 
 Acceptance:
 
-- build report-i za obe putanje ne nose razlicit runtime graph
+- the build reports for both paths do not carry a different runtime graph
 
 Status:
 
@@ -157,15 +163,14 @@ Status:
 
 ### B10-005 Publish canonical close-out note
 
-Zadatak:
+Task:
 
-- zadrzati ovaj backlog kao kanonski zapis sta je vec freeze-ovano pre daljeg
-  bring-up i hardening rada
+- keep this backlog as the canonical record of what is already frozen before
+  further bring-up and hardening work
 
 Acceptance:
 
-- `B20` i `B30` mogu da krenu bez ponovnog otvaranja osnovnog channel/region
-  modela
+- `B20` and `B30` can start without reopening the basic channel/region model
 
 Status:
 
@@ -173,12 +178,13 @@ Status:
 
 ## Out Of Scope
 
-- retransmit ili bounded retry policy
-- qemu ili board smoke acceptance
-- persistence iza `session_store` stuba
-- host UX, job format prosirenja ili planner feature creep
+- retransmit or bounded retry policy
+- `qemu` or board smoke acceptance
+- persistence behind the `session_store` stub
+- host UX, job format extensions, or planner feature creep
 
 ## Human-Owned Decisions
 
-- promene kanonskog service graph-a ili authority modela posle ovog close-outa
-- uvodjenje novih app PD-ova, novih region family-ja ili sireg Pi/MCU boundary-ja
+- changes to the canonical service graph or authority model after this close-out
+- introducing new app protection domains, new region families, or a wider
+  Pi/MCU boundary

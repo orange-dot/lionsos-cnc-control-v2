@@ -6,15 +6,15 @@
 
 # CNC Control V2 Backlog Workspace
 
-`docs/backlog/` je kanonski dom za implementacioni backlog
-`lionsos-cnc-control-v2` linije.
+`docs/backlog/` is the canonical home for the implementation backlog of the
+`lionsos-cnc-control-v2` line.
 
-Poenta ovog foldera nije da zameni arhitektonske dokumente iz `docs/`, nego da
-iz njih izvuce usko definisane, reviewable backlog rezove.
+The purpose of this folder is not to replace the architectural documents in
+`docs/`, but to extract narrowly defined, reviewable backlog slices from them.
 
 ## Source Of Truth
 
-Arhitektonski source of truth ostaje:
+The architectural source of truth remains:
 
 - `README.md`
 - `docs/ARCHITECTURE.md`
@@ -28,8 +28,9 @@ Arhitektonski source of truth ostaje:
 - `lionsos_cnc_v2.mk`
 - `Makefile`
 
-Backlog dokumenti ne smeju tiho menjati te boundary-je. Ako otkriju rupu ili
-kontradikciju, moraju je izneti kao work item ili human-owned decision.
+Backlog documents must not silently change those boundaries. If they uncover a
+gap or contradiction, they must surface it as a work item or a human-owned
+decision.
 
 ## Canonical Documents
 
@@ -41,14 +42,14 @@ kontradikciju, moraju je izneti kao work item ili human-owned decision.
 
 ## Naming Rules
 
-- veliki backlog dokumenti koriste prefiks `Bxx_`
-- buduci manji AI-ready slice dokumenti koriste `Sxx_` ili `Bxx-Syy_`
-- work item identifikatori unutar backloga koriste format `B10-001`,
+- large backlog documents use the `Bxx_` prefix
+- future smaller AI-ready slice documents use `Sxx_` or `Bxx-Syy_`
+- work item identifiers inside backlog documents use the format `B10-001`,
   `B20-004`, `B30-007`
 
 ## Status Vocabulary
 
-Koristi samo sledece statuse:
+Use only the following statuses:
 
 - `planned`
 - `active`
@@ -58,21 +59,22 @@ Koristi samo sledece statuse:
 
 ## Extraction Rule
 
-- implementacija ne treba da krece direktno iz master backloga
-- svaki stvarni coding korak treba da se izvuce iz jednog child backloga kao
-  mali AI-ready slice
-- slice mora da ima goal, in scope, out of scope, stable boundaries,
-  dependencies, invariants, deliverables i acceptance
+- implementation should not start directly from the master backlog
+- every concrete coding step should be extracted from one child backlog as a
+  small AI-ready slice
+- each slice must have a goal, in scope, out of scope, stable boundaries,
+  dependencies, invariants, deliverables, and acceptance
 
 ## Current Active Tracks
 
-Trenutni backlog program je namerno uzak:
+The current backlog program is intentionally narrow:
 
-- `B10` zatvara i kanonizuje vec postojeci contract/wiring runtime cut
-- `B20` zakljucava prvi kanonski bring-up i smoke acceptance put
-- `B30` hardenuje Pi/MCU wire semantics bez sirenja authority graph-a
+- `B10` closes out and canonizes the already existing contract/wiring runtime
+  cut
+- `B20` freezes the first canonical bring-up and smoke acceptance path
+- `B30` hardens the Pi/MCU wire semantics without widening the authority graph
 
-Redosled je kanonski:
+The sequence is canonical:
 
 1. `B10`
 2. `B20`

@@ -54,15 +54,15 @@ uses seL4-shaped concepts where they help:
 
 ## Current Status
 
-Ova linija je vec presla nivo "docs only" scaffolda:
+This line has already moved beyond the "docs only" scaffold stage:
 
-- `include/cnc_v2/` vec zakljucava typed shared-memory i wire contracts
-- `meta.py` + `lionsos_cnc_v2.mk` vec generisu buildable Pi-side image za
-  `qemu_virt_aarch64` i `rpi3b`
-- `components/` vec pokriva uski `job -> state -> planner -> safety ->
-  transport -> store/observability` tok
-- `mcu/` ostaje sinteticki bare-metal executor; transport hardening i stvarna
-  persistence prica ostaju backlog work
+- `include/cnc_v2/` already freezes the typed shared-memory and wire contracts
+- `meta.py` + `lionsos_cnc_v2.mk` already generate a buildable Pi-side image
+  for `qemu_virt_aarch64` and `rpi3b`
+- `components/` already cover the narrow
+  `job -> state -> planner -> safety -> transport -> store/observability` path
+- `mcu/` remains a synthetic bare-metal executor; transport hardening and the
+  real persistence story remain backlog work
 
 ## Build Inputs
 
@@ -84,26 +84,26 @@ Parity build target remains:
 
 ## Canonical Bring-Up
 
-Prvi kanonski bring-up path za ovu liniju je top-level Pi-side build za
-`qemu_virt_aarch64/debug`:
+The first canonical bring-up path for this line is the top-level Pi-side build
+for `qemu_virt_aarch64/debug`:
 
 ```bash
 LIONSOS=/path/to/lionsos MICROKIT_SDK=/path/to/microkit-sdk make
 ```
 
-Ovaj command contract zamrzava:
+This command contract freezes:
 
 - `MICROKIT_BOARD=qemu_virt_aarch64`
 - `MICROKIT_CONFIG=debug`
 - `BUILD_DIR=build`
 
-Expected primary outputs za taj prvi target su:
+The expected primary outputs for that first target are:
 
 - `build/lionsos_cnc_v2.img`
 - `build/lionsos_cnc_v2.system`
 - `build/report.txt`
 - `build/qemu_virt_aarch64.dtb`
-- app-side image-i:
+- app-side images:
   - `build/job_ingress.elf`
   - `build/state_core.elf`
   - `build/planner.elf`
@@ -111,16 +111,16 @@ Expected primary outputs za taj prvi target su:
   - `build/mcu_transport.elf`
   - `build/session_store.elf`
   - `build/observability.elf`
-- generated config/data artefakti za app-side i sDDF wiring, ukljucujuci
-  `*.data` blobove za komponente, serial i timer klijente
+- generated config/data artifacts for app-side and sDDF wiring, including
+  component, serial, and timer client `*.data` blobs
 
-Parity build za `rpi3b` ostaje:
+The parity build for `rpi3b` remains:
 
 ```bash
 LIONSOS=/path/to/lionsos MICROKIT_SDK=/path/to/microkit-sdk MICROKIT_BOARD=rpi3b BUILD_DIR=build-rpi3b make
 ```
 
-Ovaj slice zamrzava build contract i generated artefakte. Stvarni `qemu`
-boot/log i runtime smoke acceptance ostaju sledeci backlog korak.
+This slice freezes the build contract and generated artifacts. Actual `qemu`
+boot/log and runtime smoke acceptance remain the next backlog step.
 
 MCU-side builds use the `mcu/` subtree directly.

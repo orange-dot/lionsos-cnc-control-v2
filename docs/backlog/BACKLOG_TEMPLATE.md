@@ -6,30 +6,31 @@
 
 # CNC Control V2 Backlog Template
 
-Koristi ovaj sablon za svaki novi backlog dokument u `docs/backlog/`.
+Use this template for every new backlog document in `docs/backlog/`.
 
-Poenta sablona je da backlog ostane dovoljno precizan za AI implementaciju i
-ljudski review, bez nejasnog "sredi nekako" prostora.
+The purpose of the template is to keep the backlog precise enough for AI
+implementation and human review, without any vague "just make it work"
+space.
 
-## Kada se koristi
+## When To Use It
 
-Koristi ga za:
+Use it for:
 
-- novi veci backlog pravac
-- novu backlog temu koja ima vise work item-a
-- backlog koji treba da se sece na vise AI-ready slice-eva
+- a new larger backlog direction
+- a new backlog topic that has multiple work items
+- a backlog that needs to be cut into multiple AI-ready slices
 
-Nemoj ga koristiti za:
+Do not use it for:
 
-- veci arhitektonski manifest ili README
-- jednokratnu odluku bez backlog razrade
-- jedan mali coding task koji vec ima jasan slice brief
+- a larger architectural manifest or README
+- a one-off decision without backlog elaboration
+- one small coding task that already has a clear slice brief
 
 ## Required Sections
 
-Svaki backlog dokument mora da ima sledece sekcije:
+Every backlog document must include the following sections:
 
-- `Svrha`
+- `Purpose`
 - `Status`
 - `Reality Check`
 - `Definition Of Done`
@@ -39,7 +40,7 @@ Svaki backlog dokument mora da ima sledece sekcije:
 - `Out Of Scope`
 - `Human-Owned Decisions`
 
-Opcione sekcije:
+Optional sections:
 
 - `Chosen Defaults`
 - `Acceptance Sequence`
@@ -49,47 +50,47 @@ Opcione sekcije:
 ## Canonical Skeleton
 
 ```md
-# <kratko backlog ime>
+# <short backlog name>
 
-## Svrha
+## Purpose
 
-- sta backlog pokriva
-- gde mu je granica
+- what the backlog covers
+- where its boundary is
 
 ## Status
 
-Ovaj backlog je trenutno **planned|active|blocked|partial|done**.
+This backlog is currently **planned|active|blocked|partial|done**.
 
 ## Reality Check
 
-- sta danas postoji
-- sta nedostaje
-- koje kontradikcije ili rupe postoje
+- what exists today
+- what is missing
+- which contradictions or gaps exist
 
 ## Definition Of Done
 
-- koji uslovi moraju istovremeno biti tacni
-- kako znamo da je backlog stvarno zatvoren
+- which conditions must all be true at the same time
+- how we know the backlog is actually closed
 
 ## Canonical Artifacts
 
-- koji fajlovi, header-i, generated artefakti ili docs su kanonski
+- which files, headers, generated artifacts, or docs are canonical
 
 ## Dependencies
 
-- koji drugi backlogovi ili docs moraju vec biti zakljucani
+- which other backlog documents or docs must already be frozen
 
 ## Work Items
 
-### Bxx-001 <kratko ime>
+### Bxx-001 <short name>
 
-Zadatak:
+Task:
 
-- sta treba zakljucati ili isporuciti
+- what needs to be frozen or delivered
 
 Acceptance:
 
-- kako znamo da je ovaj item gotov
+- how we know this item is done
 
 Status:
 
@@ -97,34 +98,37 @@ Status:
 
 ## Out Of Scope
 
-- sta backlog namerno ne pokriva
+- what the backlog intentionally does not cover
 
 ## Human-Owned Decisions
 
-- sta AI ne sme sam da prelama
-- koje odluke ostaju za coveka
+- what the AI must not decide on its own
+- which decisions remain human-owned
 ```
 
 ## Rules For Good Backlogs
 
-- cilj mora biti opisan kao ishod, ne kao mehanicki spisak komandi
-- `reality check` mora reci sta je stvarno danasnje stanje, ne samo idealnu metu
-- work item-i moraju imati stabilne ID-jeve
-- svaki work item mora imati acceptance i status
-- backlog mora imati eksplicitan `out of scope`
-- ako postoji visoko-impact odluka, ona mora stajati u
-  `Human-Owned Decisions`, ne biti sakrivena u tekstu
+- the goal must be described as an outcome, not as a mechanical list of
+  commands
+- `reality check` must describe the actual current state, not just the ideal
+  target
+- work items must have stable ids
+- every work item must have acceptance and status
+- the backlog must have an explicit `out of scope`
+- if there is a high-impact decision, it must appear in
+  `Human-Owned Decisions`, not be hidden in the prose
 
 ## Slice Extraction Rules
 
-Kada backlog sazri za implementaciju, iz njega izvuci poseban slice brief.
+When a backlog is ready for implementation, extract a separate slice brief from
+it.
 
-Svaki slice mora da zakljuca:
+Each slice must freeze:
 
-- jedan glavni cilj
-- mali broj fajlova ili jedan jasan subsystem
-- stable boundaries koje ne sme da pomeri
-- acceptance koji moze da se proveri
+- one main goal
+- a small number of files or one clear subsystem
+- stable boundaries it must not move
+- acceptance that can be verified
 
-Ako jedan slice prirodno trazi vise nezavisnih acceptance koraka, treba ga
-rastaviti na vise slice-eva.
+If one slice naturally requires multiple independent acceptance steps, it
+should be split into multiple slices.

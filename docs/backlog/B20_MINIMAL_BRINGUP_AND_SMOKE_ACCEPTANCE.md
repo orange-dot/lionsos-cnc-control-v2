@@ -6,62 +6,65 @@
 
 # B20 Minimal Bring-Up And Smoke Acceptance
 
-## Svrha
+## Purpose
 
-Ovaj backlog zakljucava prvi kanonski bring-up i smoke acceptance put za
+This backlog freezes the first canonical bring-up and smoke acceptance path for
 `lionsos-cnc-control-v2`.
 
-Granica backloga je namerno uska:
+The backlog boundary is intentionally narrow:
 
-- cilj je jedan reviewable build i acceptance red
-- cilj nije jos raditi transport retransmit, persistence ili siri host tooling
+- the goal is one reviewable build and acceptance path
+- the goal is not yet to do transport retransmit, persistence, or broader host
+  tooling
 
 ## Status
 
-Ovaj backlog je trenutno **active**.
+This backlog is currently **active**.
 
 ## Reality Check
 
-Danas vec postoje:
+The following already exist today:
 
-- `Makefile` kao top-level build entrypoint
-- `lionsos_cnc_v2.mk` kao stvarni build/wiring sloj
-- `meta.py` kao system description generator
-- `build/` i `build-rpi3b/` sa vec generisanim image/report artefaktima
-- prvi kanonski build contract sada je freeze-ovan oko
-  `qemu_virt_aarch64/debug` sa `BUILD_DIR=build`
-- `rpi3b` ostaje parity build target sa `BUILD_DIR=build-rpi3b`
-- realan app-side command path kroz `job_ingress`, `state_core`, `planner`,
+- `Makefile` as the top-level build entrypoint
+- `lionsos_cnc_v2.mk` as the real build/wiring layer
+- `meta.py` as the system-description generator
+- `build/` and `build-rpi3b/` with already generated image/report artifacts
+- the first canonical build contract is now frozen around
+  `qemu_virt_aarch64/debug` with `BUILD_DIR=build`
+- `rpi3b` remains the parity build target with `BUILD_DIR=build-rpi3b`
+- a real app-side command path through `job_ingress`, `state_core`, `planner`,
   `safety_coordinator`, `mcu_transport`, `session_store`, `observability`
 
-Jos uvek nedostaje:
+The following are still missing:
 
-- jedan backlog-zakljucan smoke scenario sa named success signalima
-- potpuno zatvoren subsystem-level success signal model
-- stvarni runtime smoke close-out iznad build-plus-artifact sloja
+- one backlog-locked smoke scenario with named success signals
+- a fully closed subsystem-level success-signal model
+- a real runtime smoke close-out above the build-plus-artifact layer
 
 ## Chosen Defaults
 
-Za prvi acceptance cut vaze sledeci default-i:
+The following defaults apply for the first acceptance cut:
 
-- prvi kanonski bring-up target je `qemu_virt_aarch64` sa `MICROKIT_CONFIG=debug`
-- `rpi3b` ostaje parity build target, ali ne i prvi obavezni run target
-- build-plus-generated-artifact evidence je dovoljan da zatvori `B20-001`
-- stvarni `qemu` boot/log evidence je pomeren u `B20-002`
-- prvi smoke scenario pokriva jedan accepted job koji prolazi kroz:
+- the first canonical bring-up target is `qemu_virt_aarch64` with
+  `MICROKIT_CONFIG=debug`
+- `rpi3b` remains the parity build target, but not the first mandatory run
+  target
+- build-plus-generated-artifact evidence is enough to close `B20-001`
+- actual `qemu` boot/log evidence is deferred to `B20-002`
+- the first smoke scenario covers one accepted job that passes through:
   `state_core -> planner -> safety_coordinator -> mcu_transport ->
   state_core -> observability`
 
 ## Definition Of Done
 
-Ovaj backlog je gotov kada su istovremeno tacne sledece stvari:
+This backlog is done when all of the following are true at the same time:
 
-- postoji jedan kanonski build path za prvi bring-up target
-- postoji jedan minimalni smoke scenario sa jasno imenovanim success signalima
-- success signali pokrivaju build artifact, topology artifact i runtime-facing
-  state/transport/observability efekte
-- `README.md` i backlog vise ne daju razlicitu sliku o tome sta je "trenutni
-  runtime cut"
+- there is one canonical build path for the first bring-up target
+- there is one minimal smoke scenario with clearly named success signals
+- the success signals cover build artifacts, topology artifacts, and
+  runtime-facing state/transport/observability effects
+- `README.md` and the backlog no longer present different pictures of what the
+  "current runtime cut" is
 
 ## Canonical Artifacts
 
@@ -78,41 +81,43 @@ Ovaj backlog je gotov kada su istovremeno tacne sledece stvari:
 
 ## Dependencies
 
-- `B10` mora ostati zatvoren i neotvoren
+- `B10` must remain closed and not be reopened
 
 ## Acceptance Sequence
 
-Prvi acceptance red za ovaj backlog treba da zakljuca:
+The first acceptance path for this backlog needs to settle:
 
-1. koji je kanonski build command path za prvi bring-up target
-2. koji generated artefakti moraju postojati posle build-a
-3. koji minimalni job scenario pokrecemo ili simuliramo
-4. koje promene u `state_snapshot`, `transport_status` i
-   `observability_report` predstavljaju uspeh
-5. koji failure signali odmah znace da bring-up cut nije zatvoren
+1. which build command path is canonical for the first bring-up target
+2. which generated artifacts must exist after the build
+3. which minimal job scenario we run or simulate
+4. which changes in `state_snapshot`, `transport_status`, and
+   `observability_report` count as success
+5. which failure signals immediately mean the bring-up cut is not closed
 
 ## Work Items
 
 ### B20-001 Freeze first bring-up target and build contract
 
-Zadatak:
+Task:
 
-- zamrznuti `qemu_virt_aarch64` sa `MICROKIT_CONFIG=debug` kao prvi kanonski
-  bring-up target
-- zakljucati top-level build command:
+- freeze `qemu_virt_aarch64` with `MICROKIT_CONFIG=debug` as the first
+  canonical bring-up target
+- freeze the top-level build command:
   `LIONSOS=/path/to/lionsos MICROKIT_SDK=/path/to/microkit-sdk make`
-- zakljucati parity build command za `rpi3b`:
+- freeze the parity build command for `rpi3b`:
   `LIONSOS=/path/to/lionsos MICROKIT_SDK=/path/to/microkit-sdk MICROKIT_BOARD=rpi3b BUILD_DIR=build-rpi3b make`
-- zakljucati checklist primary output artefakata za prvi target:
+- freeze the checklist of primary output artifacts for the first target:
   `build/lionsos_cnc_v2.img`, `build/lionsos_cnc_v2.system`,
-  `build/report.txt`, `build/qemu_virt_aarch64.dtb`, app-side `.elf` image-i
-  i generated `.data` wiring blobovi
+  `build/report.txt`, `build/qemu_virt_aarch64.dtb`, app-side `.elf` images,
+  and generated `.data` wiring blobs
 
 Acceptance:
 
-- novi implementer ne mora da pogadja da li prvo cilja `qemu_virt_aarch64` ili
-  `rpi3b`, niti koji output znaci da je build uspeo
-- `README.md` i backlog koriste isti command contract i isti artifact checklist
+- a new implementer does not have to guess whether to target
+  `qemu_virt_aarch64` or `rpi3b` first, nor which output means the build
+  succeeded
+- `README.md` and the backlog use the same command contract and the same
+  artifact checklist
 
 Status:
 
@@ -120,15 +125,17 @@ Status:
 
 ### B20-002 Publish minimal smoke scenario
 
-Zadatak:
+Task:
 
-- opisati jedan uski smoke scenario koji dokazuje da command path nije samo
+- describe one narrow smoke scenario that proves the command path is not
   compile-only
-- scenario mora da obuhvati accepted job i downstream state/transport efekte
+- the scenario must cover an accepted job and downstream state/transport
+  effects
 
 Acceptance:
 
-- postoji jedan reviewable scenario koji ne siri scope na pune CNC funkcije
+- there is one reviewable scenario that does not widen scope to full CNC
+  functionality
 
 Status:
 
@@ -136,17 +143,17 @@ Status:
 
 ### B20-003 Freeze subsystem-level success signals
 
-Zadatak:
+Task:
 
-- imenovati sta se racuna kao success signal za:
+- name what counts as a success signal for:
   - `state_core`
   - `mcu_transport`
   - `observability`
-- jasno odvojiti build artifact success od runtime success-a
+- clearly separate build-artifact success from runtime success
 
 Acceptance:
 
-- bring-up review vise ne zavisi od neizrecenog "deluje da je dovoljno dobro"
+- bring-up review no longer depends on an unspoken "it seems good enough"
 
 Status:
 
@@ -154,14 +161,14 @@ Status:
 
 ### B20-004 Align README with canonical runtime cut
 
-Zadatak:
+Task:
 
-- dopuniti repo-level opis tako da dokumentuje backlog workspace, current
-  status i prvi acceptance put
+- extend the repo-level description so it documents the backlog workspace,
+  current status, and the first acceptance path
 
 Acceptance:
 
-- `README.md` vise ne zaostaje za backlog-locked runtime stvarnoscu
+- `README.md` no longer lags behind the backlog-locked runtime reality
 
 Status:
 
@@ -169,14 +176,14 @@ Status:
 
 ## Out Of Scope
 
-- transport retransmit ili advanced recovery politika
-- session persistence iza in-memory stuba
-- novi job tipovi, planner feature-i ili host-side tooling
-- uvodjenje dodatnih PD-ova ili promena authority graph-a
+- transport retransmit or advanced recovery policy
+- session persistence behind the in-memory stub
+- new job types, planner features, or host-side tooling
+- introducing additional protection domains or changing the authority graph
 
 ## Human-Owned Decisions
 
-- da li `B20-002` zatvaramo preko stvarnog `qemu` boot/log-a, ili preko drugog
-  reviewable smoke evidence sloja
-- da li `rpi3b` runtime smoke mora biti deo istog backlog close-outa ili
-  zaseban follow-up cut
+- whether we close `B20-002` through actual `qemu` boot/log evidence, or
+  through another reviewable smoke-evidence layer
+- whether `rpi3b` runtime smoke must be part of the same backlog close-out or a
+  separate follow-up cut

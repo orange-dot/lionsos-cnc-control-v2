@@ -6,49 +6,50 @@
 
 # CNC Control V2 Implementation Master Backlog
 
-## Svrha
+## Purpose
 
-Ovaj dokument je glavni backlog entrypoint za prvi stvarni implementacioni
-program u `lionsos-cnc-control-v2`.
+This document is the main backlog entrypoint for the first real implementation
+program in `lionsos-cnc-control-v2`.
 
-Njegova uloga nije da zamenjuje arhitekturu, nego da:
+Its role is not to replace the architecture, but to:
 
-- poveze postojeci runtime cut sa implementacionim redosledom
-- izvuce kanonske backlog pravce
-- zakljuca zavisnosti i redosled
-- spreci da rad krene iz kontradiktornih runtime ili acceptance pretpostavki
+- connect the existing runtime cut to the implementation sequence
+- extract the canonical backlog tracks
+- freeze dependencies and ordering
+- prevent work from starting from contradictory runtime or acceptance
+  assumptions
 
 ## Status
 
-Ovaj backlog je trenutno **active**.
+This backlog is currently **active**.
 
 ## Reality Check
 
-Danasnje stanje repoa je jace od "appliance scaffold" opisa iz kratkog
-`README.md`:
+The current state of the repo is stronger than the "appliance scaffold"
+description in the short `README.md`:
 
-- Pi-side app graph je vec imenovan, izgenerisan i buildable
-- `meta.py` + `lionsos_cnc_v2.mk` vec pokrivaju dve board putanje:
-  `qemu_virt_aarch64` i `rpi3b`
-- `include/cnc_v2/*.h` vec zakljucava channels, regions, config blob layouts,
-  generation helpers i wire ABI
-- `components/` vec nosi uski `job -> plan -> safety -> transport ->
-  observability` tok
-- `mcu/` vec implementira sinteticki bare-metal executor sa `ACK/NAK/status` i
-  heartbeat odgovorima
+- the Pi-side app graph is already named, generated, and buildable
+- `meta.py` + `lionsos_cnc_v2.mk` already cover two board paths:
+  `qemu_virt_aarch64` and `rpi3b`
+- `include/cnc_v2/*.h` already freeze channels, regions, config blob layouts,
+  generation helpers, and the wire ABI
+- `components/` already carry the narrow
+  `job -> plan -> safety -> transport -> observability` path
+- `mcu/` already implements a synthetic bare-metal executor with `ACK/NAK/status`
+  and heartbeat responses
 
-I dalje nedostaje:
+The following pieces are still missing:
 
-- jedan prvi zamrznuti smoke acceptance put iznad build contract-a
-- hardenovan transport/executor failure model, posebno oko timeout/retry i
-  response klasifikacije
+- one first frozen smoke acceptance path above the build contract
+- a hardened transport/executor failure model, especially around timeout/retry
+  and response classification
 
-Backlog workspace je sada uveden da upravo te preostale korake drzi
-kanonski vezanim za stvarno stanje repoa.
+The backlog workspace has now been introduced specifically to keep those
+remaining steps canonically tied to the actual state of the repo.
 
 ## Source Of Truth
 
-Arhitektonski input za ovaj backlog ostaje:
+The architectural input for this backlog remains:
 
 - `README.md`
 - `docs/ARCHITECTURE.md`
@@ -73,74 +74,79 @@ Arhitektonski input za ovaj backlog ostaje:
 
 ## Canonical Sequence
 
-Redosled backlog zatvaranja je kanonski:
+The backlog close-out sequence is canonical:
 
-1. `B10` prvo zatvara sta je vec stvarno freeze-ovano u docs, contracts,
-   `meta.py`, `.mk` i build izlazima
-2. `B20` zatim zakljucava prvi bring-up target, build path i minimalni smoke
+1. `B10` first closes out what is already actually frozen in docs, contracts,
+   `meta.py`, `.mk`, and build outputs
+2. `B20` then freezes the first bring-up target, build path, and minimal smoke
    acceptance scenario
-3. `B30` tek onda hardenuje wire-level i MCU executor semantics bez pomeranja
-   authority ili topology granica
+3. `B30` only then hardens the wire-level and MCU executor semantics without
+   moving authority or topology boundaries
 
 ## Cross-Track Invariants
 
-Sva tri pravca moraju istovremeno da cuvaju sledece:
+All three tracks must preserve the following at the same time:
 
-- Pi-side control plane ostaje `seL4 + Microkit + sDDF + LionsOS`
-- MCU ostaje bare-metal executor, ne "drugi seL4 cvor"
-- `mcu_transport` ostaje jedini app PD sa serial-client ownership-om
-- `state_core` ostaje authoritative owner lifecycle-a i kanonskog
-  machine-state modela na Pi strani
-- forbidden shortcuts iz `docs/TOPOLOGY.md` ostaju zabranjeni
-- nema app-side direktnog UART MMIO ownership-a
-- session persistence i siri host UX ne smeju se uvoditi kroz transport backlog
+- the Pi-side control plane remains `seL4 + Microkit + sDDF + LionsOS`
+- the MCU remains a bare-metal executor, not a "second seL4 node"
+- `mcu_transport` remains the only app protection domain with serial-client
+  ownership
+- `state_core` remains the authoritative owner of lifecycle and the canonical
+  Pi-side machine-state model
+- the forbidden shortcuts from `docs/TOPOLOGY.md` remain forbidden
+- there is no app-side direct UART MMIO ownership
+- session persistence and broader host UX must not be introduced through the
+  transport backlog
 
 ## Blocker Table
 
-Trenutni blokeri po pravcu:
+Current blockers by track:
 
 - `B10`
-  - nema aktivnih contract/topology blokera
-  - backlog ostaje kao kanonski close-out vec postojecih odluka
+  - there are no active contract/topology blockers
+  - the backlog remains the canonical close-out of already existing decisions
 - `B20`
-  - prvi kanonski bring-up target i build contract su sada freeze-ovani
-  - `README.md` jos ne nosi puni smoke status repoa
-  - nema jednog backlog-izvucenog smoke scenarija sa eksplicitnim success
-    signalima po subsystem-u
+  - the first canonical bring-up target and build contract are now frozen
+  - `README.md` does not yet carry the full smoke status of the repo
+  - there is no backlog-extracted smoke scenario with explicit subsystem-level
+    success signals
 - `B30`
-  - nema retransmit ili bounded retry policy-ja
-  - validan RX frame danas automatski zavrsava wait stanje i postavlja
-    `RESPONSE_OK` bez pune response klasifikacije
-  - heartbeat i status/position odgovori jos nisu backlog-locked kao odvojene
-    semanticke klase
+  - there is no retransmit or bounded retry policy
+  - a valid RX frame currently ends the wait state automatically and sets
+    `RESPONSE_OK` without full response classification
+  - heartbeat and status/position responses are not yet backlog-locked as
+    separate semantic classes
 
 ## Exit Criteria For This Master Backlog
 
-Master backlog je zatvoren kada su istovremeno tacne sledece stvari:
+The master backlog is closed when all of the following are true at the same
+time:
 
-- `B10`, `B20` i `B30` imaju `done` status
-- postoji jedan kanonski build i smoke path za prvi runtime cut
-- transport failure semantics su eksplicitne i reviewable
-- sledeci rad moze da se deli na manje feature backlogove ili AI-ready
-  slice-eve bez povratka na osnovni runtime/acceptance spor
+- `B10`, `B20`, and `B30` have `done` status
+- there is one canonical build and smoke path for the first runtime cut
+- transport failure semantics are explicit and reviewable
+- subsequent work can be split into smaller feature backlogs or AI-ready
+  slices without returning to the basic runtime/acceptance dispute
 
 ## Slice Extraction Rule
 
-Iz ovog dokumenta se ne implementira direktno.
+This document is not implemented directly.
 
-Pre svakog coding koraka potrebno je:
+Before each coding step, it is necessary to:
 
-1. izabrati jedan child backlog
-2. izvuci mali slice brief
-3. zakljucati goal, in scope, out of scope, stable boundaries i acceptance
-4. tek onda dati AI-ju implementaciju
+1. choose one child backlog
+2. extract a small slice brief
+3. freeze the goal, in scope, out of scope, stable boundaries, and acceptance
+4. only then hand implementation to the AI
 
 ## First Expected Slice Families
 
-Prve logicne slice porodice koje ce izaci iz ovog master backloga su:
+The first logical slice families expected to come out of this master backlog
+are:
 
-- `B20` slice za smoke acceptance evidenciju
-- `B20` slice za subsystem success signal model i README alignment
-- `B30` slice za response-class model
-- `B30` slice za timeout/retry policy
-- `B30` slice za state_core/observability alignment posle transport hardening-a
+- a `B20` slice for smoke acceptance evidence
+- a `B20` slice for the subsystem success-signal model and README alignment
+- a `B30` slice for the response-class model
+- a `B30` slice for the timeout/retry policy
+- a `B30` slice for `state_core`/`observability` alignment after transport
+  hardening

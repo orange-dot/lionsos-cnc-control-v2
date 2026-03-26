@@ -6,59 +6,62 @@
 
 # B30 MCU Transport And Executor Hardening
 
-## Svrha
+## Purpose
 
-Ovaj backlog hardenuje Pi/MCU wire boundary bez pomeranja authority modela ili
-sirine runtime graph-a.
+This backlog hardens the Pi/MCU wire boundary without moving the authority
+model or widening the runtime graph.
 
-Granica backloga je namerno uska:
+The backlog boundary is intentionally narrow:
 
-- cilj je da `mcu_transport` i `mcu/` dobiju jasan failure i recovery model
-- cilj nije da MCU postane OS-like subsystem ili da planner/safety dobiju novi
-  scope
+- the goal is for `mcu_transport` and `mcu/` to get a clear failure and
+  recovery model
+- the goal is not for the MCU to become an OS-like subsystem or for
+  planner/safety to gain new scope
 
 ## Status
 
-Ovaj backlog je trenutno **planned**.
+This backlog is currently **planned**.
 
 ## Reality Check
 
-Danas vec postoje:
+The following already exist today:
 
-- realan TX put kroz sDDF serial client queue
-- RX byte-stream FSM nazad u `cnc_frame_t`
-- timeout path koji degradira `transport_status`
-- sinteticki MCU executor sa `ACK/NAK/status/heartbeat` odgovorima
+- a real TX path through the sDDF serial client queue
+- an RX byte-stream FSM back into `cnc_frame_t`
+- a timeout path that degrades `transport_status`
+- a synthetic MCU executor with `ACK/NAK/status/heartbeat` responses
 
-Jos uvek nedostaje:
+The following are still missing:
 
-- eksplicitna response klasifikacija i korelacija sa pending command-om
-- bounded retry ili abandon politika
-- jasno razdvajanje heartbeat/liveness signala od command completion signala
-- backlog-zakljucana semantika za to kako `state_core` i `observability`
-  tumace NAK, timeout i unexpected valid response
+- explicit response classification and correlation with the pending command
+- a bounded retry or abandon policy
+- clear separation of heartbeat/liveness signals from command-completion
+  signals
+- backlog-locked semantics for how `state_core` and `observability` interpret
+  NAK, timeout, and unexpected valid responses
 
 ## Chosen Defaults
 
-Za prvi hardening cut vaze sledeci default-i:
+The following defaults apply for the first hardening cut:
 
-- ostaje jedan in-flight command u transportu
-- heartbeat ne zatvara pending command wait
-- validan ali neocekivan response ne sme sam da obrise divergence ili timeout
-- MCU executor ostaje sinteticki i bez internog task graph-a
+- one in-flight command remains in the transport
+- heartbeat does not close the pending-command wait
+- a valid but unexpected response must not clear divergence or timeout on its
+  own
+- the MCU executor remains synthetic and without an internal task graph
 
 ## Definition Of Done
 
-Ovaj backlog je gotov kada su istovremeno tacne sledece stvari:
+This backlog is done when all of the following are true at the same time:
 
-- response klase (`ACK`, `NAK`, `POSITION`, `HEARTBEAT`, invalid/unexpected`)
-  imaju jasnu semantiku
-- timeout/retry/abandon pravila su eksplicitna i reviewable
-- `transport_status` moze da razlikuje local queue fault, remote reject,
-  timeout i protocol fault
-- `state_core` i `observability` ne tretiraju sve validne RX frame-ove kao
-  isti "success"
-- MCU executor ostaje narrow bare-metal dispatcher
+- response classes (`ACK`, `NAK`, `POSITION`, `HEARTBEAT`, invalid/unexpected`)
+  have clear semantics
+- timeout/retry/abandon rules are explicit and reviewable
+- `transport_status` can distinguish local queue fault, remote reject,
+  timeout, and protocol fault
+- `state_core` and `observability` do not treat all valid RX frames as the
+  same "success"
+- the MCU executor remains a narrow bare-metal dispatcher
 
 ## Canonical Artifacts
 
@@ -76,24 +79,25 @@ Ovaj backlog je gotov kada su istovremeno tacne sledece stvari:
 
 ## Dependencies
 
-- `B10` mora ostati zatvoren
-- `B20` treba da zakljuca prvi canonical bring-up i smoke put pre agresivnijeg
-  wire hardening rada
+- `B10` must remain closed
+- `B20` must settle the first canonical bring-up and smoke path before more
+  aggressive wire-hardening work
 
 ## Work Items
 
 ### B30-001 Freeze response classification model
 
-Zadatak:
+Task:
 
-- zakljucati koji response tipovi:
-  - zatvaraju pending command
-  - samo nose liveness/status informaciju
-  - predstavljaju protocol ili correlation problem
+- settle which response types:
+  - close the pending command
+  - only carry liveness/status information
+  - represent a protocol or correlation problem
 
 Acceptance:
 
-- `mcu_transport` vise ne tretira svaki validan response kao isti `RESPONSE_OK`
+- `mcu_transport` no longer treats every valid response as the same
+  `RESPONSE_OK`
 
 Status:
 
@@ -101,17 +105,17 @@ Status:
 
 ### B30-002 Freeze timeout, retry and abandon policy
 
-Zadatak:
+Task:
 
-- zakljucati da li prvi hardening cut ima:
+- settle whether the first hardening cut has:
   - zero retry
   - bounded retry
-  - ili explicit abandon posle timeout-a
-- policy mora ostati mali i reviewable
+  - or explicit abandon after timeout
+- the policy must stay small and reviewable
 
 Acceptance:
 
-- implementer ne mora sam da izmisli recovery ponasanje na wire fault-u
+- the implementer does not have to invent recovery behavior on a wire fault
 
 Status:
 
@@ -119,18 +123,18 @@ Status:
 
 ### B30-003 Harden invalid and unexpected RX handling
 
-Zadatak:
+Task:
 
-- odvojiti:
+- separate:
   - CRC fault
   - unexpected response class
   - out-of-sequence response
-- odrediti koji od tih slucajeva menjaju health, lifecycle ili samo evidence
+- determine which of those cases change health, lifecycle, or only evidence
 
 Acceptance:
 
-- protocol fault handling je eksplicitna, ne implicitna posledica trenutnog
-  helper toka
+- protocol fault handling is explicit, not an implicit consequence of the
+  current helper flow
 
 Status:
 
@@ -138,16 +142,16 @@ Status:
 
 ### B30-004 Freeze heartbeat and status-query semantics
 
-Zadatak:
+Task:
 
-- zakljucati kako heartbeat i position/status odgovori uticu na:
+- settle how heartbeat and position/status responses affect:
   - liveness
   - pending command wait
   - machine state publication
 
 Acceptance:
 
-- heartbeat i status response vise nisu "samo jos jedan validan frame"
+- heartbeat and status responses are no longer "just another valid frame"
 
 Status:
 
@@ -155,15 +159,15 @@ Status:
 
 ### B30-005 Align transport consumers after hardening
 
-Zadatak:
+Task:
 
-- uskladiti `state_core` lifecycle mapping i `observability` health/report
-  model sa novim transport semantics
+- align the `state_core` lifecycle mapping and the `observability`
+  health/report model with the new transport semantics
 
 Acceptance:
 
-- downstream potrosaci ne gube informaciju o tome da li je problem remote
-  reject, timeout, CRC fault ili lokalni queue problem
+- downstream consumers do not lose information about whether the problem is a
+  remote reject, timeout, CRC fault, or a local queue problem
 
 Status:
 
@@ -171,15 +175,16 @@ Status:
 
 ## Out Of Scope
 
-- promene planner ili safety policy scope-a
-- prosirenje wire frame formata van onoga sto je potrebno za prvi hardening cut
-- persistence, session semantics ili host UX
-- uvodjenje MCU-side scheduler-a, task sistema ili dinamicke alokacije
+- changes to planner or safety policy scope
+- widening the wire-frame format beyond what is needed for the first hardening
+  cut
+- persistence, session semantics, or host UX
+- introducing an MCU-side scheduler, task system, or dynamic allocation
 
 ## Human-Owned Decisions
 
-- tacan retry budzet za prvi hardening cut
-- da li `POSITION` response sme da zatvori pending command samo za
-  `STATUS_QUERY` ili i za druge komande
-- kako se remote `NAK` mapira na lifecycle/evidence model van uskog transport
-  layer-a
+- the exact retry budget for the first hardening cut
+- whether the `POSITION` response may close a pending command only for
+  `STATUS_QUERY` or also for other commands
+- how remote `NAK` maps to the lifecycle/evidence model outside the narrow
+  transport layer
