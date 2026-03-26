@@ -1,0 +1,13 @@
+{
+  "sample_rate_hz": 10000000.0,
+  "sample_period_ns": 100.0,
+  "channels": [
+    {
+      "channel": "ch1",
+      "samples_file": "samples.bin",
+      "sample_count": 24519,
+      "trigger_index": null,
+      "frequency_hz": null
+    }
+  ]
+}

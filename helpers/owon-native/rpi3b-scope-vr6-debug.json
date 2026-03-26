@@ -1,0 +1,36 @@
+{
+  "calibrations": [
+    {
+      "channel": "ch1",
+      "voltage_gain": 983,
+      "zero_offset": 540
+    }
+  ],
+  "channels": [
+    {
+      "channel": "ch1",
+      "cursor_from_right": 5108,
+      "period_num": 668,
+      "sample_count": 5000,
+      "sample_max_i8": 25,
+      "sample_max_u8": 255,
+      "sample_min_i8": -128,
+      "sample_min_u8": 0,
+      "sample_offset": 50,
+      "time_sum": 16944805
+    }
+  ],
+  "edge_level": 62976,
+  "freqref": 251,
+  "peakmode": false,
+  "phasefine": 0,
+  "post_trigger_samples": 4588,
+  "pre_trigger_samples": 512,
+  "requested_channels": [
+    "ch1"
+  ],
+  "rollmode": false,
+  "timebase_prescaler": 40,
+  "trigger_holdoff": 32770,
+  "volt_range_index": 6
+}

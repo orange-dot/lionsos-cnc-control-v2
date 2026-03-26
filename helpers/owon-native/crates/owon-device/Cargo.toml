@@ -1,0 +1,9 @@
+[package]
+name = "owon-device"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+owon-protocol = { path = "../owon-protocol" }
+owon-usb = { path = "../owon-usb" }
+

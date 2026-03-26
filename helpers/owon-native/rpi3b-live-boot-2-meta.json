@@ -1,0 +1,13 @@
+{
+  "sample_rate_hz": 2500000,
+  "sample_period_ns": 400,
+  "channels": [
+    {
+      "channel": "ch1",
+      "samples_file": "rpi3b-live-boot-2-ch1.bin",
+      "sample_count": 5000,
+      "trigger_index": 0,
+      "frequency_hz": 2401.419232866331
+    }
+  ]
+}

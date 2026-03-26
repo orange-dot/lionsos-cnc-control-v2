@@ -1,0 +1,9 @@
+[package]
+name = "owon-analysis"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+owon-decode = { path = "../owon-decode" }
+owon-device = { path = "../owon-device" }
+owon-protocol = { path = "../owon-protocol" }

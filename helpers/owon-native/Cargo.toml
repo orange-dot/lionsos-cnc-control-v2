@@ -1,0 +1,18 @@
+[workspace]
+members = [
+    "crates/owon-analysis",
+    "crates/owon-decode",
+    "crates/owon-device",
+    "crates/owon-probe",
+    "crates/owon-protocol",
+    "crates/owon-ui",
+    "crates/owon-usb",
+]
+resolver = "2"
+
+[workspace.package]
+edition = "2024"
+version = "0.1.0"
+
+[workspace.dependencies]
+rusb = "0.9.4"

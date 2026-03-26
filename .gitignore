@@ -1,0 +1,7 @@
+/__pycache__/
+/build/
+/build-rpi3b/
+/build-rpi3b-uart-scope/
+/mcu/build/
+/mcu/*.hex
+*.pyc

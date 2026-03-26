@@ -1,0 +1,20 @@
+{
+  "sample_rate_hz": 2500000,
+  "sample_period_ns": 400,
+  "channels": [
+    {
+      "channel": "ch1",
+      "samples_file": "dual-seq-two-probes-late-ch1.bin",
+      "sample_count": 5000,
+      "trigger_index": 0,
+      "frequency_hz": 51.12621972958547
+    },
+    {
+      "channel": "ch2",
+      "samples_file": "dual-seq-two-probes-late-ch2.bin",
+      "sample_count": 5000,
+      "trigger_index": 0,
+      "frequency_hz": 0
+    }
+  ]
+}

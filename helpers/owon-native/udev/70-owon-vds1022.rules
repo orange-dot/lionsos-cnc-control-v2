@@ -1,0 +1,6 @@
+# OWON VDS1022 native Linux access rule.
+#
+# This intentionally mirrors the legacy installer behavior so the new native
+# transport layer can reach the same USB device without root.
+SUBSYSTEMS=="usb", ATTRS{idVendor}=="5345", ATTRS{idProduct}=="1234", MODE="0666"
+

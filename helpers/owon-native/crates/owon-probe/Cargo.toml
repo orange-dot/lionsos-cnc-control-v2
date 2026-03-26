@@ -1,0 +1,12 @@
+[package]
+name = "owon-probe"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+owon-decode = { path = "../owon-decode" }
+owon-device = { path = "../owon-device" }
+owon-protocol = { path = "../owon-protocol" }
+owon-usb = { path = "../owon-usb" }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"

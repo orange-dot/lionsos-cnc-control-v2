@@ -1,0 +1,8 @@
+[package]
+name = "owon-usb"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+rusb.workspace = true
+
