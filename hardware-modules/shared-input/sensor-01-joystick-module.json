@@ -1,0 +1,55 @@
+{
+  "schema_version": "1.0",
+  "sensor_id": "sensor-01",
+  "filename": "sensor-01-joystick-module.jpeg",
+  "original_filename": "signal-2026-03-19-230535_002.jpeg",
+  "capture": {
+    "source": "filename",
+    "timestamp_local": "2026-03-19T23:05:35",
+    "timezone": null,
+    "raw_token": "2026-03-19-230535"
+  },
+  "image": {
+    "format": "jpeg",
+    "width": 900,
+    "height": 1600,
+    "bytes": 73738,
+    "sha256": "77a359551878a7a5420e24fe4db534485c78de139564ac6209b630aeb9260c36"
+  },
+  "identification": {
+    "label": "joystick module",
+    "category": "input",
+    "specific_model": null,
+    "confidence": "high"
+  },
+  "visible_features": {
+    "silkscreen_text": [
+      "GND",
+      "VCC",
+      "UP",
+      "VRx",
+      "SW"
+    ],
+    "pin_labels": [
+      "GND",
+      "VCC",
+      "UP",
+      "VRx",
+      "SW"
+    ],
+    "connector_count": 5,
+    "package_notes": "thumb joystick on a small breakout board"
+  },
+  "dataset": {
+    "tags": [
+      "module",
+      "joystick",
+      "input",
+      "breakout-board",
+      "bench-photo"
+    ],
+    "slug": "joystick-module",
+    "review_status": "reviewed"
+  },
+  "notes": "Large thumb joystick cap and clearly visible labeled header support a high-confidence joystick-module label."
+}

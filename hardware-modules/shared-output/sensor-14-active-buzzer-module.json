@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "sensor_id": "sensor-14",
+  "filename": "sensor-14-active-buzzer-module.jpeg",
+  "original_filename": "signal-2026-03-19-231100_002.jpeg",
+  "capture": {
+    "source": "filename",
+    "timestamp_local": "2026-03-19T23:11:00",
+    "timezone": null,
+    "raw_token": "2026-03-19-231100"
+  },
+  "image": {
+    "format": "jpeg",
+    "width": 900,
+    "height": 1600,
+    "bytes": 154047,
+    "sha256": "f5ab31175164dda89e8b38b3c65d6ab9a20750f45e94fac770cf743b45b5c4b6"
+  },
+  "identification": {
+    "label": "active buzzer module",
+    "category": "output",
+    "specific_model": null,
+    "confidence": "medium"
+  },
+  "visible_features": {
+    "silkscreen_text": [
+      "S"
+    ],
+    "pin_labels": [
+      "S",
+      "+",
+      "-"
+    ],
+    "connector_count": 3,
+    "package_notes": "blue upright cylindrical buzzer-like can on a small black board"
+  },
+  "dataset": {
+    "tags": [
+      "module",
+      "buzzer",
+      "audio-output",
+      "output",
+      "breakout-board"
+    ],
+    "slug": "active-buzzer-module",
+    "review_status": "reviewed"
+  },
+  "notes": "The upright cylinder with a sound opening matches a buzzer package more closely than a typical sensor, so it is labeled as an active buzzer module."
+}

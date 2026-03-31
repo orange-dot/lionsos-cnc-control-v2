@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0",
+  "sensor_id": "sensor-11",
+  "filename": "sensor-11-thermistor-temperature-module.jpeg",
+  "original_filename": "signal-2026-03-19-231010_002.jpeg",
+  "capture": {
+    "source": "filename",
+    "timestamp_local": "2026-03-19T23:10:10",
+    "timezone": null,
+    "raw_token": "2026-03-19-231010"
+  },
+  "image": {
+    "format": "jpeg",
+    "width": 900,
+    "height": 1600,
+    "bytes": 162663,
+    "sha256": "1d6c839a80d0a70bf38ead1886930e5c16d33cc5e4034d506166179f09d00883"
+  },
+  "identification": {
+    "label": "thermistor temperature module",
+    "category": "temperature",
+    "specific_model": null,
+    "confidence": "medium"
+  },
+  "visible_features": {
+    "silkscreen_text": [
+      "DO",
+      "A0",
+      "G",
+      "+",
+      "FE-01"
+    ],
+    "pin_labels": [
+      "A0",
+      "G",
+      "+",
+      "DO"
+    ],
+    "connector_count": 4,
+    "package_notes": "small black bead thermistor on a red comparator board"
+  },
+  "dataset": {
+    "tags": [
+      "module",
+      "temperature",
+      "thermistor",
+      "analog",
+      "comparator-board"
+    ],
+    "slug": "thermistor-temperature-module",
+    "review_status": "reviewed"
+  },
+  "notes": "The two-lead bead component is consistent with an NTC thermistor module; the photo supports a temperature-sensor label at medium confidence."
+}

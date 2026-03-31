@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0",
+  "sensor_id": "sensor-20",
+  "filename": "sensor-20-ball-tilt-switch-module.jpeg",
+  "original_filename": "signal-2026-03-19-231246_002.jpeg",
+  "capture": {
+    "source": "filename",
+    "timestamp_local": "2026-03-19T23:12:46",
+    "timezone": null,
+    "raw_token": "2026-03-19-231246"
+  },
+  "image": {
+    "format": "jpeg",
+    "width": 900,
+    "height": 1600,
+    "bytes": 165341,
+    "sha256": "43fa8c73f71bceb3bf11a301348fff73f2e4ffbc22afec765daa0c4b69021b94"
+  },
+  "identification": {
+    "label": "ball tilt switch module",
+    "category": "motion",
+    "specific_model": null,
+    "confidence": "medium"
+  },
+  "visible_features": {
+    "silkscreen_text": [
+      "A",
+      "S"
+    ],
+    "pin_labels": [
+      "S",
+      "+",
+      "-"
+    ],
+    "connector_count": 3,
+    "package_notes": "small blue cylindrical switch package mounted diagonally on a black PCB"
+  },
+  "dataset": {
+    "tags": [
+      "module",
+      "tilt-switch",
+      "ball-switch",
+      "motion",
+      "breakout-board"
+    ],
+    "slug": "ball-tilt-switch-module",
+    "review_status": "reviewed"
+  },
+  "notes": "The metal-ended blue cylinder matches common ball-tilt switch packages, so the label stays in that family."
+}

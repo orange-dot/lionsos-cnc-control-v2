@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0",
+  "sensor_id": "sensor-10",
+  "filename": "sensor-10-sound-sensor-module.jpeg",
+  "original_filename": "signal-2026-03-19-230953_002.jpeg",
+  "capture": {
+    "source": "filename",
+    "timestamp_local": "2026-03-19T23:09:53",
+    "timezone": null,
+    "raw_token": "2026-03-19-230953"
+  },
+  "image": {
+    "format": "jpeg",
+    "width": 900,
+    "height": 1600,
+    "bytes": 181711,
+    "sha256": "9346bd96724514f7be2edbb7ae555bcbdd7b9e637947be8365c162b9ea359667"
+  },
+  "identification": {
+    "label": "sound sensor module",
+    "category": "audio",
+    "specific_model": null,
+    "confidence": "high"
+  },
+  "visible_features": {
+    "silkscreen_text": [
+      "DO",
+      "A0",
+      "G",
+      "+",
+      "FE-01"
+    ],
+    "pin_labels": [
+      "A0",
+      "G",
+      "+",
+      "DO"
+    ],
+    "connector_count": 4,
+    "package_notes": "red comparator board with electret microphone capsule and trim potentiometer"
+  },
+  "dataset": {
+    "tags": [
+      "module",
+      "sound",
+      "microphone",
+      "audio",
+      "comparator-board"
+    ],
+    "slug": "sound-sensor-module",
+    "review_status": "reviewed"
+  },
+  "notes": "The electret microphone capsule is clearly visible, matching a common microphone sound sensor module."
+}

@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0",
+  "sensor_id": "sensor-19",
+  "filename": "sensor-19-photoresistor-light-sensor-module.jpeg",
+  "original_filename": "signal-2026-03-19-231227_002.jpeg",
+  "capture": {
+    "source": "filename",
+    "timestamp_local": "2026-03-19T23:12:27",
+    "timezone": null,
+    "raw_token": "2026-03-19-231227"
+  },
+  "image": {
+    "format": "jpeg",
+    "width": 900,
+    "height": 1600,
+    "bytes": 138165,
+    "sha256": "2689ad0c501b255766aa4af5afa565306fc3878a429c96537bb554c8dbb1bd5c"
+  },
+  "identification": {
+    "label": "photoresistor light sensor module",
+    "category": "light",
+    "specific_model": null,
+    "confidence": "high"
+  },
+  "visible_features": {
+    "silkscreen_text": [
+      "A",
+      "S"
+    ],
+    "pin_labels": [
+      "S",
+      "+",
+      "-"
+    ],
+    "connector_count": 3,
+    "package_notes": "small LDR photoresistor on a black PCB"
+  },
+  "dataset": {
+    "tags": [
+      "module",
+      "photoresistor",
+      "light-sensor",
+      "ldr",
+      "breakout-board"
+    ],
+    "slug": "photoresistor-light-sensor-module",
+    "review_status": "reviewed"
+  },
+  "notes": "The striped LDR photoresistor element is clearly visible, supporting a high-confidence light-sensor label."
+}

@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "sensor_id": "sensor-18",
+  "filename": "sensor-18-rgb-led-module.jpeg",
+  "original_filename": "signal-2026-03-19-231204_002.jpeg",
+  "capture": {
+    "source": "filename",
+    "timestamp_local": "2026-03-19T23:12:04",
+    "timezone": null,
+    "raw_token": "2026-03-19-231204"
+  },
+  "image": {
+    "format": "jpeg",
+    "width": 900,
+    "height": 1600,
+    "bytes": 175667,
+    "sha256": "77fd356e816084d117a7abec37d45f12e75cf37950a60c190f86f064f494ae0d"
+  },
+  "identification": {
+    "label": "RGB LED module",
+    "category": "output",
+    "specific_model": null,
+    "confidence": "high"
+  },
+  "visible_features": {
+    "silkscreen_text": [
+      "R",
+      "G",
+      "B",
+      "GND"
+    ],
+    "pin_labels": [
+      "R",
+      "G",
+      "B",
+      "GND"
+    ],
+    "connector_count": 4,
+    "package_notes": "clear through-hole RGB LED on a compact black PCB"
+  },
+  "dataset": {
+    "tags": [
+      "module",
+      "rgb-led",
+      "output",
+      "light",
+      "breakout-board"
+    ],
+    "slug": "rgb-led-module",
+    "review_status": "reviewed"
+  },
+  "notes": "The header is explicitly labeled R, G, B, and GND, so this is a straightforward RGB LED module."
+}

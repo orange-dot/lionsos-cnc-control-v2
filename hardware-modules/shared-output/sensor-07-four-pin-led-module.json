@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "sensor_id": "sensor-07",
+  "filename": "sensor-07-four-pin-led-module.jpeg",
+  "original_filename": "signal-2026-03-19-230802_002.jpeg",
+  "capture": {
+    "source": "filename",
+    "timestamp_local": "2026-03-19T23:08:02",
+    "timezone": null,
+    "raw_token": "2026-03-19-230802"
+  },
+  "image": {
+    "format": "jpeg",
+    "width": 900,
+    "height": 1600,
+    "bytes": 157466,
+    "sha256": "15a657a2a8bc81b539f65cc1481238b768e53e2a0ae58802bd07a646efbe911a"
+  },
+  "identification": {
+    "label": "four-pin LED module",
+    "category": "output",
+    "specific_model": null,
+    "confidence": "medium"
+  },
+  "visible_features": {
+    "silkscreen_text": [
+      "S"
+    ],
+    "pin_labels": [
+      "-",
+      "+",
+      "S"
+    ],
+    "connector_count": 3,
+    "package_notes": "clear four-lead LED package mounted on a small black PCB"
+  },
+  "dataset": {
+    "tags": [
+      "module",
+      "led",
+      "output",
+      "clear-led",
+      "breakout-board"
+    ],
+    "slug": "four-pin-led-module",
+    "review_status": "reviewed"
+  },
+  "notes": "The clear multi-lead LED package is visible, but the precise color behavior is not readable from the silkscreen."
+}

@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0",
+  "sensor_id": "sensor-15",
+  "filename": "sensor-15-slot-photo-interrupter-module.jpeg",
+  "original_filename": "signal-2026-03-19-231112_002.jpeg",
+  "capture": {
+    "source": "filename",
+    "timestamp_local": "2026-03-19T23:11:12",
+    "timezone": null,
+    "raw_token": "2026-03-19-231112"
+  },
+  "image": {
+    "format": "jpeg",
+    "width": 900,
+    "height": 1600,
+    "bytes": 164116,
+    "sha256": "4c982cc52b8584c9f895887e3b95841fab78d5c2cdbcf7a76cdd115c6d4a66ea"
+  },
+  "identification": {
+    "label": "slot photo interrupter module",
+    "category": "optical",
+    "specific_model": null,
+    "confidence": "high"
+  },
+  "visible_features": {
+    "silkscreen_text": [],
+    "pin_labels": [
+      "S",
+      "+",
+      "-"
+    ],
+    "connector_count": 3,
+    "package_notes": "small U-shaped photointerrupter on a square black PCB"
+  },
+  "dataset": {
+    "tags": [
+      "module",
+      "photointerrupter",
+      "slot-sensor",
+      "optical",
+      "breakout-board"
+    ],
+    "slug": "slot-photo-interrupter-module",
+    "review_status": "reviewed"
+  },
+  "notes": "The U-shaped optical gate package is a clear slot photo-interrupter form factor."
+}

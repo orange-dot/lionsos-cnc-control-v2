@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "sensor_id": "sensor-22",
+  "filename": "sensor-22-magic-light-cup-module.jpeg",
+  "original_filename": "signal-2026-03-19-231340_002.jpeg",
+  "capture": {
+    "source": "filename",
+    "timestamp_local": "2026-03-19T23:13:40",
+    "timezone": null,
+    "raw_token": "2026-03-19-231340"
+  },
+  "image": {
+    "format": "jpeg",
+    "width": 900,
+    "height": 1600,
+    "bytes": 126668,
+    "sha256": "14ae4335383c2dd28aedf3de9dfb0606f9907eac0a0b16e0375a5f24a9b9046c"
+  },
+  "identification": {
+    "label": "magic light cup module",
+    "category": "output",
+    "specific_model": null,
+    "confidence": "medium"
+  },
+  "visible_features": {
+    "silkscreen_text": [
+      "Lcup",
+      "487",
+      "R",
+      "H"
+    ],
+    "pin_labels": [
+      "S",
+      "+",
+      "-"
+    ],
+    "connector_count": 3,
+    "package_notes": "clear LED paired with a glass switch element on a small black board"
+  },
+  "dataset": {
+    "tags": [
+      "module",
+      "light-cup",
+      "led",
+      "tilt-switch",
+      "output"
+    ],
+    "slug": "magic-light-cup-module",
+    "review_status": "reviewed"
+  },
+  "notes": "The board combines an LED with a glass switch element and partial Lcup silkscreen, matching the common magic-light-cup module family."
+}

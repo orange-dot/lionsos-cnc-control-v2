@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "sensor_id": "sensor-03",
+  "filename": "sensor-03-laser-transmitter-module.jpeg",
+  "original_filename": "signal-2026-03-19-230632_002.jpeg",
+  "capture": {
+    "source": "filename",
+    "timestamp_local": "2026-03-19T23:06:32",
+    "timezone": null,
+    "raw_token": "2026-03-19-230632"
+  },
+  "image": {
+    "format": "jpeg",
+    "width": 900,
+    "height": 1600,
+    "bytes": 173981,
+    "sha256": "e3763ff03cf55194037c6a5b01a1ead64220f7015106827e1b38bf191b19bcae"
+  },
+  "identification": {
+    "label": "laser transmitter module",
+    "category": "optical",
+    "specific_model": null,
+    "confidence": "high"
+  },
+  "visible_features": {
+    "silkscreen_text": [
+      "S",
+      "+",
+      "-"
+    ],
+    "pin_labels": [
+      "S",
+      "+",
+      "-"
+    ],
+    "connector_count": 3,
+    "package_notes": "brass laser can mounted on a tiny black PCB"
+  },
+  "dataset": {
+    "tags": [
+      "module",
+      "laser",
+      "optical",
+      "emitter",
+      "breakout-board"
+    ],
+    "slug": "laser-transmitter-module",
+    "review_status": "reviewed"
+  },
+  "notes": "The brass laser can and simple three-pin board strongly indicate a laser transmitter module."
+}

@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0",
+  "sensor_id": "sensor-23",
+  "filename": "sensor-23-smd-rgb-led-module.jpeg",
+  "original_filename": "signal-2026-03-19-231358_002.jpeg",
+  "capture": {
+    "source": "filename",
+    "timestamp_local": "2026-03-19T23:13:58",
+    "timezone": null,
+    "raw_token": "2026-03-19-231358"
+  },
+  "image": {
+    "format": "jpeg",
+    "width": 900,
+    "height": 1600,
+    "bytes": 163946,
+    "sha256": "991acfb1a3a42431546e5fbcecd95fa9aa975d40905b22da998fe85fc3b8418e"
+  },
+  "identification": {
+    "label": "SMD RGB LED module",
+    "category": "output",
+    "specific_model": "WCMCU 3-Color",
+    "confidence": "high"
+  },
+  "visible_features": {
+    "silkscreen_text": [
+      "WCMCU",
+      "3-Color",
+      "B",
+      "R",
+      "G"
+    ],
+    "pin_labels": [
+      "B",
+      "R",
+      "G",
+      "-"
+    ],
+    "connector_count": 4,
+    "package_notes": "surface-mount RGB LED on a small black WCMCU board"
+  },
+  "dataset": {
+    "tags": [
+      "module",
+      "rgb-led",
+      "smd-led",
+      "output",
+      "wcmcu"
+    ],
+    "slug": "smd-rgb-led-module",
+    "review_status": "reviewed"
+  },
+  "notes": "The WCMCU 3-Color silkscreen and labeled B/R/G header make this a high-confidence SMD RGB LED module."
+}

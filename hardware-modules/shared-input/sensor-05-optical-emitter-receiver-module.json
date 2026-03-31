@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "sensor_id": "sensor-05",
+  "filename": "sensor-05-optical-emitter-receiver-module.jpeg",
+  "original_filename": "signal-2026-03-19-230732_002.jpeg",
+  "capture": {
+    "source": "filename",
+    "timestamp_local": "2026-03-19T23:07:32",
+    "timezone": null,
+    "raw_token": "2026-03-19-230732"
+  },
+  "image": {
+    "format": "jpeg",
+    "width": 900,
+    "height": 1600,
+    "bytes": 137731,
+    "sha256": "0843594b99867d7c6957623c0c4d8bc2bac6b9d1f7dafbe27497a99d228d8910"
+  },
+  "identification": {
+    "label": "optical emitter/receiver module",
+    "category": "optical",
+    "specific_model": null,
+    "confidence": "medium"
+  },
+  "visible_features": {
+    "silkscreen_text": [
+      "G",
+      "L",
+      "Lm"
+    ],
+    "pin_labels": [
+      "G",
+      "?",
+      "?",
+      "L"
+    ],
+    "connector_count": 4,
+    "package_notes": "mixed clear and dark optical components on a compact black PCB"
+  },
+  "dataset": {
+    "tags": [
+      "module",
+      "optical",
+      "emitter",
+      "receiver",
+      "bench-photo"
+    ],
+    "slug": "optical-emitter-receiver-module",
+    "review_status": "reviewed"
+  },
+  "notes": "The board clearly carries multiple optical components, but the exact kit name is not fully legible, so the label stays broad."
+}

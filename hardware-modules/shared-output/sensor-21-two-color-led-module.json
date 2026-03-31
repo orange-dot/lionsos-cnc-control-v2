@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "sensor_id": "sensor-21",
+  "filename": "sensor-21-two-color-led-module.jpeg",
+  "original_filename": "signal-2026-03-19-231303_002.jpeg",
+  "capture": {
+    "source": "filename",
+    "timestamp_local": "2026-03-19T23:13:03",
+    "timezone": null,
+    "raw_token": "2026-03-19-231303"
+  },
+  "image": {
+    "format": "jpeg",
+    "width": 900,
+    "height": 1600,
+    "bytes": 164887,
+    "sha256": "7cc8fa24e6e6b29c0eb13d8a9895f32d9414ac257f8b38649a4d6fe2729cf6fd"
+  },
+  "identification": {
+    "label": "two-color LED module",
+    "category": "output",
+    "specific_model": null,
+    "confidence": "medium"
+  },
+  "visible_features": {
+    "silkscreen_text": [
+      "S"
+    ],
+    "pin_labels": [
+      "S",
+      "+",
+      "-"
+    ],
+    "connector_count": 3,
+    "package_notes": "clear through-hole LED on a small black control board"
+  },
+  "dataset": {
+    "tags": [
+      "module",
+      "led",
+      "two-color",
+      "output",
+      "breakout-board"
+    ],
+    "slug": "two-color-led-module",
+    "review_status": "reviewed"
+  },
+  "notes": "The board is an LED output module, but the exact color behavior is not fully legible; two-color LED is the conservative fit for this package style."
+}

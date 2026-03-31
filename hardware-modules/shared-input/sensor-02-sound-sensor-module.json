@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "sensor_id": "sensor-02",
+  "filename": "sensor-02-sound-sensor-module.jpeg",
+  "original_filename": "signal-2026-03-19-230611_002.jpeg",
+  "capture": {
+    "source": "filename",
+    "timestamp_local": "2026-03-19T23:06:11",
+    "timezone": null,
+    "raw_token": "2026-03-19-230611"
+  },
+  "image": {
+    "format": "jpeg",
+    "width": 900,
+    "height": 1600,
+    "bytes": 184812,
+    "sha256": "792ba95178d2fd17e45388f985024961828eaff1cf55df1d2128d4db3987e192"
+  },
+  "identification": {
+    "label": "sound sensor module",
+    "category": "audio",
+    "specific_model": null,
+    "confidence": "high"
+  },
+  "visible_features": {
+    "silkscreen_text": [
+      "mic",
+      "+",
+      "-",
+      "DO"
+    ],
+    "pin_labels": [
+      "G",
+      "+",
+      "A0",
+      "D0"
+    ],
+    "connector_count": 4,
+    "package_notes": "electret microphone on a red LM393-style breakout with trim potentiometer"
+  },
+  "dataset": {
+    "tags": [
+      "module",
+      "sound",
+      "microphone",
+      "audio",
+      "comparator-board"
+    ],
+    "slug": "sound-sensor-module",
+    "review_status": "reviewed"
+  },
+  "notes": "The electret microphone capsule and comparator-style breakout match a standard sound-detection sensor module."
+}

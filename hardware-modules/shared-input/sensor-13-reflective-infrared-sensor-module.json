@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "sensor_id": "sensor-13",
+  "filename": "sensor-13-reflective-infrared-sensor-module.jpeg",
+  "original_filename": "signal-2026-03-19-231042_002.jpeg",
+  "capture": {
+    "source": "filename",
+    "timestamp_local": "2026-03-19T23:10:42",
+    "timezone": null,
+    "raw_token": "2026-03-19-231042"
+  },
+  "image": {
+    "format": "jpeg",
+    "width": 900,
+    "height": 1600,
+    "bytes": 166551,
+    "sha256": "250b626aa85423dcd43c518a906e8e18da4173523db8f2f60062df189021b71e"
+  },
+  "identification": {
+    "label": "reflective infrared sensor module",
+    "category": "optical",
+    "specific_model": null,
+    "confidence": "high"
+  },
+  "visible_features": {
+    "silkscreen_text": [
+      "G",
+      "V+",
+      "S"
+    ],
+    "pin_labels": [
+      "G",
+      "V+",
+      "S"
+    ],
+    "connector_count": 3,
+    "package_notes": "paired IR emitter and receiver on a long narrow board with trimmer"
+  },
+  "dataset": {
+    "tags": [
+      "module",
+      "infrared",
+      "reflective",
+      "optical",
+      "line-tracking"
+    ],
+    "slug": "reflective-infrared-sensor-module",
+    "review_status": "reviewed"
+  },
+  "notes": "The paired IR devices and onboard trimmer are characteristic of a reflective IR sensing module."
+}

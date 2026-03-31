@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0",
+  "sensor_id": "sensor-12",
+  "filename": "sensor-12-cylindrical-tilt-switch-module.jpeg",
+  "original_filename": "signal-2026-03-19-231020_002.jpeg",
+  "capture": {
+    "source": "filename",
+    "timestamp_local": "2026-03-19T23:10:20",
+    "timezone": null,
+    "raw_token": "2026-03-19-231020"
+  },
+  "image": {
+    "format": "jpeg",
+    "width": 900,
+    "height": 1600,
+    "bytes": 183912,
+    "sha256": "cce3dd9403e720eabad4275f411a5059d1b88caea41d38b0d2daeaa68adf6590"
+  },
+  "identification": {
+    "label": "cylindrical tilt switch module",
+    "category": "motion",
+    "specific_model": null,
+    "confidence": "medium"
+  },
+  "visible_features": {
+    "silkscreen_text": [
+      "DO",
+      "A0",
+      "G",
+      "+",
+      "FE-01"
+    ],
+    "pin_labels": [
+      "A0",
+      "G",
+      "+",
+      "DO"
+    ],
+    "connector_count": 4,
+    "package_notes": "upright black cylindrical switch-like component on a red comparator board"
+  },
+  "dataset": {
+    "tags": [
+      "module",
+      "tilt",
+      "switch",
+      "motion",
+      "comparator-board"
+    ],
+    "slug": "cylindrical-tilt-switch-module",
+    "review_status": "reviewed"
+  },
+  "notes": "The package looks like a switch-style motion element rather than an optical head; the conservative label keeps it in the tilt-switch family."
+}

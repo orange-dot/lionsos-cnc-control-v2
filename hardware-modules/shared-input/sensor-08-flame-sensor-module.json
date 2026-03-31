@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "sensor_id": "sensor-08",
+  "filename": "sensor-08-flame-sensor-module.jpeg",
+  "original_filename": "signal-2026-03-19-230912_002.jpeg",
+  "capture": {
+    "source": "filename",
+    "timestamp_local": "2026-03-19T23:09:12",
+    "timezone": null,
+    "raw_token": "2026-03-19-230912"
+  },
+  "image": {
+    "format": "jpeg",
+    "width": 900,
+    "height": 1600,
+    "bytes": 160609,
+    "sha256": "44ad4028e193e7b2e1244e33b781dda9195e82b9992255eebdef7c1bd4096cf3"
+  },
+  "identification": {
+    "label": "flame sensor module",
+    "category": "optical",
+    "specific_model": null,
+    "confidence": "high"
+  },
+  "visible_features": {
+    "silkscreen_text": [
+      "DO",
+      "A0",
+      "G",
+      "+"
+    ],
+    "pin_labels": [
+      "A0",
+      "G",
+      "+",
+      "DO"
+    ],
+    "connector_count": 4,
+    "package_notes": "red comparator board with black IR flame-detection head and trim potentiometer"
+  },
+  "dataset": {
+    "tags": [
+      "module",
+      "flame",
+      "optical",
+      "infrared",
+      "comparator-board"
+    ],
+    "slug": "flame-sensor-module",
+    "review_status": "reviewed"
+  },
+  "notes": "The black flame-sensor head on a common LM393-style board is a standard flame-detection module."
+}

@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0",
+  "sensor_id": "sensor-06",
+  "filename": "sensor-06-infrared-sensor-module.jpeg",
+  "original_filename": "signal-2026-03-19-230747_002.jpeg",
+  "capture": {
+    "source": "filename",
+    "timestamp_local": "2026-03-19T23:07:47",
+    "timezone": null,
+    "raw_token": "2026-03-19-230747"
+  },
+  "image": {
+    "format": "jpeg",
+    "width": 900,
+    "height": 1600,
+    "bytes": 147677,
+    "sha256": "873a8e2aa6faf9b51b3c20aae70d253bd5412db59c019e8f93c5b4f3c2bc1fc2"
+  },
+  "identification": {
+    "label": "infrared sensor module",
+    "category": "optical",
+    "specific_model": null,
+    "confidence": "medium"
+  },
+  "visible_features": {
+    "silkscreen_text": [
+      "KeyesIR",
+      "GND",
+      "+",
+      "OUT",
+      "EN"
+    ],
+    "pin_labels": [
+      "GND",
+      "+",
+      "OUT",
+      "EN"
+    ],
+    "connector_count": 4,
+    "package_notes": "Keyes-branded black PCB with IR components and dual trim potentiometers"
+  },
+  "dataset": {
+    "tags": [
+      "module",
+      "infrared",
+      "optical",
+      "keyes",
+      "adjustable"
+    ],
+    "slug": "infrared-sensor-module",
+    "review_status": "reviewed"
+  },
+  "notes": "The silkscreen reads KeyesIR and the board has IR-facing components, but the exact sub-type is unclear from the photo alone."
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "sensor_id": "sensor-16",
+  "filename": "sensor-16-glass-tilt-switch-module.jpeg",
+  "original_filename": "signal-2026-03-19-231129_002.jpeg",
+  "capture": {
+    "source": "filename",
+    "timestamp_local": "2026-03-19T23:11:29",
+    "timezone": null,
+    "raw_token": "2026-03-19-231129"
+  },
+  "image": {
+    "format": "jpeg",
+    "width": 900,
+    "height": 1600,
+    "bytes": 179988,
+    "sha256": "40e69fdd49148b5aa7b2c2135396c34028edf39f0e147ccf9d4633aeab9a7a77"
+  },
+  "identification": {
+    "label": "glass tilt switch module",
+    "category": "motion",
+    "specific_model": null,
+    "confidence": "high"
+  },
+  "visible_features": {
+    "silkscreen_text": [
+      "S"
+    ],
+    "pin_labels": [
+      "S",
+      "+",
+      "-"
+    ],
+    "connector_count": 3,
+    "package_notes": "glass tube switch element on a compact black board"
+  },
+  "dataset": {
+    "tags": [
+      "module",
+      "tilt-switch",
+      "glass-switch",
+      "motion",
+      "breakout-board"
+    ],
+    "slug": "glass-tilt-switch-module",
+    "review_status": "reviewed"
+  },
+  "notes": "The glass-tube switch element supports a high-confidence tilt-switch label."
+}

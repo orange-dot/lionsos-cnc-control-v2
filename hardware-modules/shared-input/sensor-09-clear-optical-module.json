@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "sensor_id": "sensor-09",
+  "filename": "sensor-09-clear-optical-module.jpeg",
+  "original_filename": "signal-2026-03-19-230940_002.jpeg",
+  "capture": {
+    "source": "filename",
+    "timestamp_local": "2026-03-19T23:09:40",
+    "timezone": null,
+    "raw_token": "2026-03-19-230940"
+  },
+  "image": {
+    "format": "jpeg",
+    "width": 900,
+    "height": 1600,
+    "bytes": 161868,
+    "sha256": "fdf52533409f79ecab09e2531301075f936854c338edf0d1773ea8cc768d3773"
+  },
+  "identification": {
+    "label": "clear optical module",
+    "category": "optical",
+    "specific_model": null,
+    "confidence": "low"
+  },
+  "visible_features": {
+    "silkscreen_text": [
+      "A",
+      "IS",
+      "S"
+    ],
+    "pin_labels": [
+      "S",
+      "+",
+      "-"
+    ],
+    "connector_count": 3,
+    "package_notes": "small black PCB carrying a clear rectangular optical element"
+  },
+  "dataset": {
+    "tags": [
+      "module",
+      "optical",
+      "clear-element",
+      "breakout-board",
+      "uncertain"
+    ],
+    "slug": "clear-optical-module",
+    "review_status": "reviewed"
+  },
+  "notes": "The board is clearly optical, but the exact function is not legible enough to name more specifically without overclaiming."
+}

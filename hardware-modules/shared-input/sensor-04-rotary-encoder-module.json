@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "sensor_id": "sensor-04",
+  "filename": "sensor-04-rotary-encoder-module.jpeg",
+  "original_filename": "signal-2026-03-19-230652_002.jpeg",
+  "capture": {
+    "source": "filename",
+    "timestamp_local": "2026-03-19T23:06:52",
+    "timezone": null,
+    "raw_token": "2026-03-19-230652"
+  },
+  "image": {
+    "format": "jpeg",
+    "width": 900,
+    "height": 1600,
+    "bytes": 87526,
+    "sha256": "7ad55c53552e5f467fe0796cd30ddadb002a9391468bccda3dd75c56c015db1e"
+  },
+  "identification": {
+    "label": "rotary encoder module",
+    "category": "input",
+    "specific_model": null,
+    "confidence": "high"
+  },
+  "visible_features": {
+    "silkscreen_text": [
+      "S",
+      "+",
+      "-"
+    ],
+    "pin_labels": [
+      "S",
+      "+",
+      "-"
+    ],
+    "connector_count": 3,
+    "package_notes": "small shaft-style rotary encoder with pushable knob cap"
+  },
+  "dataset": {
+    "tags": [
+      "module",
+      "rotary-encoder",
+      "input",
+      "knob",
+      "breakout-board"
+    ],
+    "slug": "rotary-encoder-module",
+    "review_status": "reviewed"
+  },
+  "notes": "The shaft encoder body and knob form factor make this a clear rotary-encoder breakout."
+}
