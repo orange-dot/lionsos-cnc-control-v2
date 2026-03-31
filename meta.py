@@ -1,6 +1,7 @@
 # Copyright 2026
 # SPDX-License-Identifier: MIT
 import argparse
+import os
 import struct
 from dataclasses import dataclass
 from typing import List
@@ -39,6 +40,7 @@ class Board:
     paddr_top: int
     serial: str
     timer: str
+    i2c: str | None = None
 
 
 BOARDS: List[Board] = [
@@ -55,6 +57,7 @@ BOARDS: List[Board] = [
         paddr_top=0x0800_0000,
         serial="soc/serial@7e215040",
         timer="soc/timer@7e003000",
+        i2c="soc/i2c@7e804000",
     ),
 ]
 
@@ -163,7 +166,7 @@ def serialise_app_configs(output_dir: str, configs: dict) -> None:
     )
 
 
-def generate(sdf_path: str, output_dir: str, dtb: DeviceTree) -> None:
+def generate_cnc(sdf_path: str, output_dir: str, dtb: DeviceTree) -> None:
     serial_node = dtb.node(board.serial)
     timer_node = dtb.node(board.timer)
     assert serial_node is not None
@@ -287,6 +290,47 @@ def generate(sdf_path: str, output_dir: str, dtb: DeviceTree) -> None:
         f.write(sdf.render())
 
 
+def generate_gimbal_demo(sdf_path: str, output_dir: str, dtb: DeviceTree) -> None:
+    serial_node = dtb.node(board.serial)
+    timer_node = dtb.node(board.timer)
+    i2c_node = dtb.node(board.i2c) if board.i2c else None
+    assert serial_node is not None
+    assert timer_node is not None
+    assert i2c_node is not None
+
+    serial_driver = ProtectionDomain("serial_driver", "serial_driver.elf", priority=200)
+    serial_virt_tx = ProtectionDomain("serial_virt_tx", "serial_virt_tx.elf", priority=199)
+    timer_driver = ProtectionDomain("timer_driver", "timer_driver.elf", priority=180)
+    i2c_driver = ProtectionDomain("i2c_driver", "i2c_driver.elf", priority=170)
+    i2c_virt = ProtectionDomain("i2c_virt", "i2c_virt.elf", priority=169)
+    micropython = ProtectionDomain("micropython", "micropython.elf", priority=80, budget=20000, stack_size=0x10000)
+
+    gpio_regs = MemoryRegion(sdf, "gpio_regs", 0x1000, paddr=0x3F200000)
+    sdf.add_mr(gpio_regs)
+    i2c_driver.add_map(Map(gpio_regs, 0x30_100_000, "rw", cached=False))
+
+    serial_system = Sddf.Serial(sdf, serial_node, serial_driver, serial_virt_tx, enable_color=False)
+    timer_system = Sddf.Timer(sdf, timer_node, timer_driver)
+    i2c_system = Sddf.I2c(sdf, i2c_node, i2c_driver, i2c_virt)
+
+    serial_system.add_client(micropython)
+    timer_system.add_client(micropython)
+    i2c_system.add_client(micropython)
+
+    for pd in [serial_driver, serial_virt_tx, timer_driver, i2c_driver, i2c_virt, micropython]:
+        sdf.add_pd(pd)
+
+    assert serial_system.connect()
+    assert serial_system.serialise_config(output_dir)
+    assert timer_system.connect()
+    assert timer_system.serialise_config(output_dir)
+    assert i2c_system.connect()
+    assert i2c_system.serialise_config(output_dir)
+
+    with open(f"{output_dir}/{sdf_path}", "w+") as f:
+        f.write(sdf.render())
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--dtb", required=True)
@@ -303,4 +347,7 @@ if __name__ == "__main__":
     with open(args.dtb, "rb") as f:
         dtb = DeviceTree(f.read())
 
-    generate(args.sdf, args.output, dtb)
+    if args.board == "rpi3b" and bool(int(os.environ.get("CNC_V2_GIMBAL_DEMO", "0"))):
+        generate_gimbal_demo(args.sdf, args.output, dtb)
+    else:
+        generate_cnc(args.sdf, args.output, dtb)

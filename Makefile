@@ -18,6 +18,7 @@ export MICROKIT_CONFIG ?= debug
 export BUILD_DIR ?= $(abspath build)
 export MICROKIT_BOARD ?= qemu_virt_aarch64
 export CNC_V2_UART_SCOPE_TEST ?= 0
+export CNC_V2_GIMBAL_DEMO ?= 0
 
 IMAGE_FILE := $(BUILD_DIR)/lionsos_cnc_v2.img
 REPORT_FILE := $(BUILD_DIR)/report.txt
@@ -36,6 +37,7 @@ ${BUILD_DIR}/Makefile: lionsos_cnc_v2.mk Makefile
 	echo "export MICROKIT_SDK ?= ${MICROKIT_SDK}" >> $@
 	echo "export MICROKIT_CONFIG ?= ${MICROKIT_CONFIG}" >> $@
 	echo "export CNC_V2_UART_SCOPE_TEST ?= ${CNC_V2_UART_SCOPE_TEST}" >> $@
+	echo "export CNC_V2_GIMBAL_DEMO ?= ${CNC_V2_GIMBAL_DEMO}" >> $@
 	cat lionsos_cnc_v2.mk >> $@
 
 submodules:
