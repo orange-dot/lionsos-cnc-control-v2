@@ -11,6 +11,23 @@ appliance scaffold.
 
 It is intentionally separate from the existing `lionsos-cnc-control` v1 line.
 
+## Current Status
+
+- the typed control-plane and MCU-side contract is already frozen in code
+- the Pi-side image generation path is real but depends on external LionsOS and Microkit inputs
+- the MCU executor remains a synthetic bare-metal scaffold rather than a finished production line
+- helper and evidence work exists, but the repo still needs more runtime proof beyond build generation
+
+## Canonical Smoke Path
+
+```bash
+python3 -m py_compile meta.py
+cargo check --locked --manifest-path helpers/owon-native/Cargo.toml
+```
+
+This is the shortest truthful public proof path today. Full Pi-side and MCU-side
+builds still depend on external toolchains and hardware-specific setup.
+
 ## Architectural Posture
 
 - Pi-side control plane uses `seL4 + Microkit + sDDF + LionsOS`
@@ -39,6 +56,7 @@ uses seL4-shaped concepts where they help:
 
 ## Documents
 
+- [Docs index](docs/README.md)
 - [Architecture](docs/ARCHITECTURE.md)
 - [Topology](docs/TOPOLOGY.md)
 - [MCU Boundary](docs/MCU_BOUNDARY.md)
@@ -124,3 +142,13 @@ This slice freezes the build contract and generated artifacts. Actual `qemu`
 boot/log and runtime smoke acceptance remain the next backlog step.
 
 MCU-side builds use the `mcu/` subtree directly.
+
+## Known Limits
+
+- the root `make` path is not self-contained without `LIONSOS` and `MICROKIT_SDK`
+- MCU builds require an AVR toolchain that is intentionally not assumed by the smoke path
+- the current repo is stronger on boundary definition and evidence posture than on end-to-end runtime acceptance
+
+## Development
+
+See [DEVELOPMENT.md](DEVELOPMENT.md) for the smoke path and full build prerequisites.

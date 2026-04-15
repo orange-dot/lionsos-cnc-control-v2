@@ -1,7 +1,11 @@
 /__pycache__/
+/demo/__pycache__/
 /build/
 /build-rpi3b/
 /build-rpi3b-uart-scope/
 /mcu/build/
 /mcu/*.hex
+/helpers/owon-native/target/
+.codex/
+.playwright-mcp/
 *.pyc
